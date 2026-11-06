@@ -28,11 +28,16 @@ from market_hours import get_market_status, get_market_info, MARKETS
 # ============================================================
 # KONFIGURASI
 # ============================================================
-POSTGRES_HOST = "localhost"
-POSTGRES_PORT = 5432
-POSTGRES_USER = "postgres"
-POSTGRES_PASSWORD = "6797"
-POSTGRES_DB = "stock_db"
+import os  # Pastikan ini ada di paling atas
+
+# ... kode lainnya ...
+
+# Konfigurasi Database
+POSTGRES_HOST = os.getenv("DB_HOST", "localhost")
+POSTGRES_PORT = int(os.getenv("DB_PORT", 5432))
+POSTGRES_USER = os.getenv("DB_USER", "postgres")
+POSTGRES_PASSWORD = os.getenv("DB_PASSWORD", "6797")
+POSTGRES_DB = os.getenv("DB_NAME", "stock_db")
 
 # Interval pembanding perubahan harga (menit)
 # Ubah ke 60 untuk 1 jam, 30 untuk 30 menit, 10 untuk 10 menit

@@ -1,0 +1,306 @@
+Microsoft Windows [Version 10.0.26200.9457]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\jacin>cd C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL
+
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL>venv\Scripts\activate
+
+(venv) C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL>cd C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts
+
+(venv) C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts>python 01_functional_testing.py
+======================================================================
+FUNCTIONAL TESTING — CAPSTONE PROJECT
+Waktu: 2026-10-13 11:23:16
+======================================================================
+
+======================================================================
+TEST 1: DATA MASUK (Data Ingestion)
+======================================================================
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:35: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql("SELECT COUNT(*) as total FROM stock_prices;", conn)
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:39: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_recent = pd.read_sql("""
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:47: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_symbols = pd.read_sql("""
+✓ Total records: 47,151
+✓ Records dalam 5 menit terakhir: 58
+✓ Distribusi per saham:
+    ENI.MI     : 8,655 records
+    ESR.AX     : 8,298 records
+    FDR.AX     : 10,083 records
+    STO.AX     : 10,041 records
+    WDS.AX     : 10,074 records
+
+[PASS] Data masuk ke sistem
+
+======================================================================
+TEST 2: DATA DIPROSES (Stream Processing)
+======================================================================
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:84: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_trends = pd.read_sql("SELECT COUNT(*) as total FROM stock_trends;", conn)
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:88: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_windows = pd.read_sql("""
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:94: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_valid = pd.read_sql("""
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:102: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_dp = pd.read_sql("""
+✓ Total trend records: 38354
+✓ Aggregation windows: 3161
+✓ Invalid agregasi (avg < min / avg > max): 0
+✓ Empty windows (data_points <= 0): 0
+
+[PASS] Data diproses dengan benar
+
+======================================================================
+TEST 3: DATA DISIMPAN (Data Storage)
+======================================================================
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:139: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_tables = pd.read_sql("""
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:150: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_cols = pd.read_sql("""
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:160: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(f"SELECT COUNT(*) as c FROM {table};", conn)
+✓ Tabel ditemukan: 4
+    - stock_analytics: 278 records
+    - stock_predictions: 20 records
+    - stock_prices: 47,151 records
+    - stock_trends: 38,354 records
+
+✓ Struktur stock_prices (13 kolom):
+    - id                   : bigint
+    - symbol               : character varying
+    - name                 : character varying
+    - exchange             : character varying
+    - price                : numeric
+    - open                 : numeric
+    - high                 : numeric
+    - low                  : numeric
+    - volume               : bigint
+    - event_timestamp      : bigint
+
+[PASS] Data disimpan dengan benar
+
+======================================================================
+TEST 4: DASHBOARD FUNGSI
+======================================================================
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:194: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_kpi = pd.read_sql("""
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:203: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_stocks = pd.read_sql("""
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\01_functional_testing.py:211: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_pred = pd.read_sql("""
+✓ KPI Cards siap:
+    - Total Records: 47,151
+    - Total Volume: 26,028,006,234
+    - Aggregation Windows: 3161
+    - Last Data: 2026-10-13 11:23:14.052312
+
+✓ Stock Cards (5 saham):
+    - ENI.MI     : $25.4550 (Vol: 25,952)
+    - ESR.AX     : $0.0260 (Vol: 0)
+    - FDR.AX     : $0.2920 (Vol: 5,810)
+    - STO.AX     : $8.9500 (Vol: 0)
+    - WDS.AX     : $32.7200 (Vol: 0)
+
+✓ Prediction Cards: 20 saham
+
+[PASS] Dashboard berfungsi
+
+======================================================================
+RINGKASAN FUNCTIONAL TESTING
+======================================================================
+Test                      Status
+----------------------------------------
+Data Masuk                PASS
+Data Diproses             PASS
+Data Disimpan             PASS
+Dashboard                 PASS
+----------------------------------------
+PASSED: 4/4
+FAILED: 0/4
+
+✓ Hasil disimpan: functional_test_result.json
+======================================================================
+
+(venv) C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts>python 02_performance_testing.py
+======================================================================
+PERFORMANCE TESTING — CAPSTONE PROJECT
+Waktu: 2026-10-13 11:24:06
+======================================================================
+
+======================================================================
+TEST: LATENCY (End-to-End)
+======================================================================
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\02_performance_testing.py:34: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql("""
+✓ Waktu sekarang: 2026-10-13 11:24:06
+✓ Data terakhir:  2026-10-13 11:23:55
+✓ Latency: 10.48 detik
+
+[PASS] Latency < 30 detik
+
+======================================================================
+TEST: THROUGHPUT (Records per Menit)
+======================================================================
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\02_performance_testing.py:70: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql("""
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\02_performance_testing.py:78: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df2 = pd.read_sql("""
+✓ Records 5 menit terakhir: 56
+✓ Records 1 jam terakhir: 663
+✓ Throughput (5 min avg): 11.2 records/menit
+✓ Throughput (1 hour avg): 11.1 records/menit
+
+[PASS] Throughput ≥ 10 records/menit
+
+======================================================================
+TEST: CPU/MEMORY USAGE
+======================================================================
+✓ CPU Usage: 22.3%
+✓ Memory Usage: 91.8% (6.83 GB / 7.44 GB)
+✓ Disk Usage: 46.6%
+
+✓ Java Processes (2):
+    - PID   9956 :   737.3 MB | CPU: 0.0%
+    - PID  11256 :   636.6 MB | CPU: 0.0%
+
+[FAIL] CPU < 80% dan Memory < 80%
+
+======================================================================
+RINGKASAN PERFORMANCE TESTING
+======================================================================
+Latency              : PASS
+Throughput           : PASS
+CPU/Memory           : FAIL
+
+PASSED: 2/3
+FAILED: 1/3
+
+✓ Hasil disimpan: performance_test_result.json
+======================================================================
+
+(venv) C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts>python 03_data_quality_testing.py
+======================================================================
+DATA QUALITY TESTING — CAPSTONE PROJECT
+Waktu: 2026-10-13 11:24:44
+======================================================================
+
+======================================================================
+TEST: MISSING VALUES
+======================================================================
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\03_data_quality_testing.py:31: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql("""
+✓ Total records: 47,167
+✓ Null symbol: 0
+✓ Null price: 0
+✓ Null volume: 0
+✓ Null inserted_at: 0
+
+[PASS] Tidak ada missing values
+
+======================================================================
+TEST: DUPLICATE RECORDS
+======================================================================
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\03_data_quality_testing.py:72: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql("""
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\03_data_quality_testing.py:83: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_pk = pd.read_sql("""
+✓ Duplicate (symbol + timestamp): 0
+✓ Duplicate (primary key): 0
+
+[PASS] Tidak ada duplicate primary key
+
+======================================================================
+TEST: INVALID RECORDS
+======================================================================
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\03_data_quality_testing.py:122: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql("""
+✓ Negative price: 0
+✓ Negative volume: 0
+✓ High < Low: 0
+✓ Unknown symbol: 0
+
+[PASS] Tidak ada invalid records
+
+======================================================================
+TEST: OUTLIERS (IQR Method)
+======================================================================
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\03_data_quality_testing.py:161: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql("SELECT symbol, price FROM stock_prices;", conn)
+✓ Total records: 47,167
+
+Symbol           Q1       Q3      IQR   Outliers        %
+------------------------------------------------------------
+STO.AX       8.5500   8.7150   0.1650        156    1.55%
+WDS.AX      31.6100  32.8600   1.2500          0    0.00%
+FDR.AX       0.2650   0.2950   0.0300          0    0.00%
+ESR.AX       0.0260   0.0280   0.0020          0    0.00%
+ENI.MI      24.0450  24.4400   0.3950       1170   13.51%
+
+✓ Total outliers: 1326 (2.81%)
+
+[PASS] Outliers < 5% (normal untuk data saham)
+
+======================================================================
+RINGKASAN DATA QUALITY TESTING
+======================================================================
+Missing Values            : PASS
+Duplicate Records         : PASS
+Invalid Records           : PASS
+Outliers                  : PASS
+
+PASSED: 4/4
+
+✓ Hasil disimpan: data_quality_test_result.json
+======================================================================
+
+(venv) C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts>python 04_scalability_testing.py
+======================================================================
+SCALABILITY TESTING — CAPSTONE PROJECT
+Waktu: 2026-10-13 11:25:17
+======================================================================
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\04_scalability_testing.py:83: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql("SELECT COUNT(*) as total FROM stock_prices;", conn)
+
+✓ Total records tersedia: 47,173
+✓ Volume yang akan di-test: [1000, 5000, 10000, 47173]
+
+======================================================================
+TEST 1: QUERY PERFORMANCE (SELECT)
+======================================================================
+
+    Volume    Records   Time (s)     Recs/sec
+--------------------------------------------------
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\04_scalability_testing.py:33: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(sql, conn)
+     1,000      1,000     0.0155       64,687
+     5,000      5,000     0.0280      178,483
+    10,000     10,000     0.0351      284,937
+    47,173     47,173     0.2386      197,698
+
+======================================================================
+TEST 2: AGGREGATION PERFORMANCE (GROUP BY)
+======================================================================
+
+    Volume     Groups   Time (s)
+----------------------------------------
+C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts\04_scalability_testing.py:64: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql(sql, conn)
+     1,000          4     0.0152
+     5,000          5     0.0114
+    10,000          5     0.0166
+    47,173          5     0.0531
+
+======================================================================
+TEST 3: SCALING ANALYSIS
+======================================================================
+✓ Volume ratio: 47.2x
+✓ Time ratio: 15.39x
+✓ Scaling: LINEAR ✓
+
+[PASS] Scalability test
+
+✓ Hasil disimpan: scalability_test_result.json
+======================================================================
+
+(venv) C:\Users\jacin\Documents\Streaming_AnalyticsSahamTL\docs\test_scripts>

@@ -1,0 +1,37 @@
+{
+  "timestamp": "2026-10-14T01:42:26.848430",
+  "test_type": "Data Quality Testing",
+  "total_tests": 4,
+  "passed": 4,
+  "failed": 0,
+  "results": [
+    {
+      "test": "Missing Values",
+      "total_records": 47701,
+      "total_nulls": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "Duplicate Records",
+      "dup_symbol_timestamp": 0,
+      "dup_primary_key": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "Invalid Records",
+      "negative_price": 0,
+      "negative_volume": 0,
+      "high_less_low": 0,
+      "unknown_symbol": 0,
+      "total_invalid": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "Outliers",
+      "total_records": 47701,
+      "total_outliers": 1420,
+      "outlier_pct": 2.98,
+      "status": "PASS"
+    }
+  ]
+}

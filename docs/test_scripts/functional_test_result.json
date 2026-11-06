@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-10-14T01:33:19.009084",
+  "test_type": "Functional Testing",
+  "total_tests": 4,
+  "passed": 4,
+  "failed": 0,
+  "results": [
+    {
+      "test": "Data Masuk",
+      "total_records": 47571,
+      "recent_5min": 31,
+      "symbols": 5,
+      "status": "PASS"
+    },
+    {
+      "test": "Data Diproses",
+      "total_trends": 38767,
+      "windows": 3199,
+      "invalid": 0,
+      "empty": 0,
+      "status": "PASS"
+    },
+    {
+      "test": "Data Disimpan",
+      "tables": 4,
+      "counts": {
+        "stock_prices": 47571,
+        "stock_trends": 38767,
+        "stock_analytics": 278,
+        "stock_predictions": 20
+      },
+      "status": "PASS"
+    },
+    {
+      "test": "Dashboard",
+      "kpi_ready": true,
+      "stocks": 5,
+      "predictions": 20,
+      "status": "PASS"
+    }
+  ]
+}

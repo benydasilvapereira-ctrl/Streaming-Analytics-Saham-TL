@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-10-14T01:43:41.132638",
+  "test_type": "Scalability Testing",
+  "total_records_available": 47717,
+  "query_results": [
+    {
+      "limit": 1000,
+      "records_returned": 1000,
+      "time_seconds": 0.0166,
+      "records_per_sec": 60123.91
+    },
+    {
+      "limit": 5000,
+      "records_returned": 5000,
+      "time_seconds": 0.0414,
+      "records_per_sec": 120844.76
+    },
+    {
+      "limit": 10000,
+      "records_returned": 10000,
+      "time_seconds": 0.078,
+      "records_per_sec": 128150.96
+    },
+    {
+      "limit": 47717,
+      "records_returned": 47717,
+      "time_seconds": 0.4131,
+      "records_per_sec": 115519.09
+    }
+  ],
+  "aggregation_results": [
+    {
+      "limit": 1000,
+      "groups": 5,
+      "time_seconds": 0.0091
+    },
+    {
+      "limit": 5000,
+      "groups": 5,
+      "time_seconds": 0.0109
+    },
+    {
+      "limit": 10000,
+      "groups": 5,
+      "time_seconds": 0.0187
+    },
+    {
+      "limit": 47717,
+      "groups": 5,
+      "time_seconds": 0.0558
+    }
+  ],
+  "status": "PASS"
+}

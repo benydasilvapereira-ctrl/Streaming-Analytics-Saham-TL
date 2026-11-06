@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-10-14T01:39:04.068349",
+  "test_type": "Performance Testing",
+  "total_tests": 3,
+  "passed": 1,
+  "failed": 2,
+  "results": [
+    {
+      "test": "Latency",
+      "latency_seconds": 8.35,
+      "status": "PASS"
+    },
+    {
+      "test": "Throughput",
+      "records_5min": 70,
+      "records_1hour": 111,
+      "throughput_5min": 14.0,
+      "throughput_1hour": 1.9,
+      "status": "FAIL"
+    },
+    {
+      "test": "CPU/Memory",
+      "cpu_percent": 27.1,
+      "memory_percent": 92.6,
+      "memory_used_gb": 6.89,
+      "disk_percent": 46.9,
+      "java_processes": [
+        {
+          "pid": 7192,
+          "name": "java.exe",
+          "memory_mb": 528.9,
+          "cpu": 0.0
+        },
+        {
+          "pid": 11964,
+          "name": "java.exe",
+          "memory_mb": 614.7,
+          "cpu": 0.0
+        }
+      ],
+      "status": "FAIL"
+    }
+  ]
+}
